@@ -20,3 +20,5 @@ Route::get('/', function () {
 Route::get('/test', function () {
     return 'welcome';
 });
+
+Route::get('/categories',[CategoryController::class,'listCategories']);
