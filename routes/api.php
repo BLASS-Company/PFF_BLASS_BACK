@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //route product:
-Route::get("products",[ProductController::class,'listProducts']);
+Route::get("nos_produits",[ProductController::class,'listProducts']);
  
 Route::post("product",[ProductController::class,'addProduct']);
  
@@ -30,6 +30,8 @@ Route::put("product/{id}",[ProductController::class,'updateProduct']);
 Route::delete("product/{id}",[ProductController::class,'deleteProduct']);
  
 Route::get("product/{id}",[ProductController::class,'showProduct']);
+
+Route::get("test/{id}",[CategoryController::class,'getAllProductsByCategory']);
 
 //route category:
 Route::get("categories",[CategoryController::class,'listCategories']);

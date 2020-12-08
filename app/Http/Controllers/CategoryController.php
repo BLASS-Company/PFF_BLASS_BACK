@@ -10,8 +10,8 @@ class CategoryController extends Controller
     //Display a list of all Catgories.
     public function listCategories()
     {
-      //   return response()->json(Category::all());
-      return "HelloWorld";
+        return response()->json(Category::all());
+      // return "HelloWorld";
     }
 
     //Store a new Category in the Database.
@@ -58,5 +58,19 @@ class CategoryController extends Controller
          'status' => (bool) $category,
          'message'=> $result ? 'The Category has been succesfully deleted' : 'We have encounter an error in the delete of the Category'
       ]);
+   }
+
+   public function getAllProductsByCategory($id)
+   {
+      if (is_numeric($id))
+      {
+         $category = Category::find($id);
+      }
+      else
+      {
+         $category = Category::where('name', $id)->get();
+      }
+      $products=$category->products;
+      return $products;
    }
 }

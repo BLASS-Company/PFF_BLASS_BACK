@@ -23,6 +23,7 @@ class ProductController extends Controller
       $product->image = $req->input('image');
       $product->price = $req->input('price');
       $product->stock = $req->input('stock');
+      $product->measure_unit = $req->input('measure_unit');
       $result=$product->save();
 
       $category_ids = $req->input('category_ids');
