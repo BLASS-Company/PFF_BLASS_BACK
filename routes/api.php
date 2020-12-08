@@ -20,8 +20,28 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get("category",[CategoryController::class, 'getCategory']);
+//route product:
+Route::get("products",[ProductController::class,'listProducts']);
+ 
+Route::post("product",[ProductController::class,'addProduct']);
+ 
+Route::put("product/{id}",[ProductController::class,'updateProduct']);
+ 
+Route::delete("product/{id}",[ProductController::class,'deleteProduct']);
+ 
+Route::get("product/{id}",[ProductController::class,'showProduct']);
+
+//route category:
+Route::get("categories",[CategoryController::class,'listCategories']);
 
 Route::post("category",[CategoryController::class,'addCategory']);
 
-Route::post("product",[ProductController::class,'addProduct']);
+Route::put("category/{id}",[CategoryController::class,'updateCategory']);
+
+Route::delete("category/{id}",[CategoryController::class,'deleteCategory']);
+
+Route::get("category/{id}",[CategoryController::class,'showCategory']);
+ 
+ 
+//auth
+Route::post("save",[ProductController::class,'testData']);
