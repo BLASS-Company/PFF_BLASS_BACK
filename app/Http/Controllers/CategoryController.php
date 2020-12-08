@@ -10,8 +10,8 @@ class CategoryController extends Controller
     //Display a list of all Catgories.
     public function listCategories()
     {
-      //   return response()->json(Category::all());
-      return "HelloWrold";
+        return response()->json(Category::all());
+      // return "HelloWrold";
     }
 
     //Store a new Category in the Database.
