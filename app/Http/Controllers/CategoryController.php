@@ -69,7 +69,7 @@ class CategoryController extends Controller
       else
       {
          // $id = preg_replace('_', '/\s+/', $id);
-         $categoryname = Category::where('name', $id)->get();
+         $category = Category::where('name', $id)->get();
       }
       // $products=$category->products;
       // return $products;

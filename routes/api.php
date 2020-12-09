@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //route product:
-Route::get("nos_produits",[ProductController::class,'listProducts']);
+Route::get("products",[ProductController::class,'listProducts']);
  
 Route::post("product",[ProductController::class,'addProduct']);
  
