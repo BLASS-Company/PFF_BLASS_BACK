@@ -60,19 +60,10 @@ class CategoryController extends Controller
       ]);
    }
 
-   // public function getAllProductsByCategory($id)
-   // {
-   //    if (is_numeric($id))
-   //    {
-   //       $category = Category::find($id);
-   //    }
-   //    else
-   //    {
-   //       // $id = preg_replace('_', '/\s+/', $id);
-   //       $category = Category::where('name', $id)->get();
-   //    }
-   //    // $products=$category->products;
-   //    // return $products;
-   //    return $category;
-   // }
+   public function getAllProductsByCategory($id)
+   {
+         $category = Category::find($id);
+      $products=$category->products;
+      return $products;
+   }
 }

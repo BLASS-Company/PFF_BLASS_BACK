@@ -33,7 +33,7 @@ Route::delete("product/{id}",[ProductController::class,'deleteProduct']);
  
 Route::get("product/{id}",[ProductController::class,'showProduct']);
 
-// Route::get("{id}",[CategoryController::class,'getAllProductsByCategory']);
+Route::get("products_category/{id}",[CategoryController::class,'getAllProductsByCategory']);
 
 //route category:
 Route::get("categories",[CategoryController::class,'listCategories']);
