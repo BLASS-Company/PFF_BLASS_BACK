@@ -45,10 +45,6 @@ Route::put("category/{id}",[CategoryController::class,'updateCategory']);
 Route::delete("category/{id}",[CategoryController::class,'deleteCategory']);
 
 Route::get("category/{id}",[CategoryController::class,'showCategory']);
- 
- 
-//auth
-Route::post("save",[ProductController::class,'testData']);
 
 //Oauth2
 Route::post("register",[AuthController::class,'register']);
