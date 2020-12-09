@@ -60,9 +60,10 @@ class CategoryController extends Controller
       ]);
    }
 
+   //Display a list of all Products that belongs to the Category
    public function getAllProductsByCategory($id)
    {
-         $category = Category::find($id);
+      $category = Category::find($id);
       $products=$category->products;
       return $products;
    }
