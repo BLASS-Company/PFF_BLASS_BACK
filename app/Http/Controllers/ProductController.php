@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Product;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -35,6 +37,7 @@ class ProductController extends Controller
       ]);
    }
 
+   
    //Display the specified Product
    public function showProduct($id)
    {
@@ -73,5 +76,15 @@ class ProductController extends Controller
          'status' => (bool) $product,
          'message'=> $result ? 'The Product has been succesfully deleted' : 'We have encounter an error in the delete of the Product'
       ]);
+   }
+   
+   public function ordering(Request $request)
+   {
+   $order = new Order();
+   $order->cart = serialize($cart);
+   $order->address = $request->input('address'); 
+   $order->name = $request->input('name');
+   $order->payment_method = $request->input('payment_method');
+   Auth::user()->orders()->save($order);
    }
 }

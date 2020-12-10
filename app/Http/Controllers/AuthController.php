@@ -37,6 +37,7 @@ class AuthController extends BaseController
             'password' => 'required',
 
             'c_password' => 'required|same:password',
+            
 
         ]);
 

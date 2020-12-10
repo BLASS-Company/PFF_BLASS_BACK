@@ -54,6 +54,12 @@ function search($name)
     return User::where("name","like","%".$name."%")->get();
 }
 
+public function getAllUserByProduct($id)
+   {
+         $command = User::find($id);
+      $products=$command->products;
+      return $products;
+   }
   
 
 }

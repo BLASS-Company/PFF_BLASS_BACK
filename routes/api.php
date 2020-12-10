@@ -49,3 +49,5 @@ Route::get("category/{id}",[CategoryController::class,'showCategory']);
 //Oauth2
 Route::post("register",[AuthController::class,'register']);
 Route::post("login",[AuthController::class,'login']);
+
+Route::post("order",[ProductController::class,'ordering',]);
