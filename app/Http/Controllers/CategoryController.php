@@ -22,6 +22,7 @@ class CategoryController extends Controller
         $result=$category->save();
 
         return response()->json([
+            $category,
             'status' => (bool) $category,
             'message'=> $result ? 'The Category has been created succesfully' : 'We have encounter an error in the creation of the Category'
         ]);
