@@ -10,98 +10,103 @@ use Illuminate\Support\Facades\Validator;
 
    
 
-class AuthController extends BaseController
+// class AuthController extends BaseController
 
-{
+// {
 
-    /**
+//     /**
 
-     * Register api
+//      * Register api
 
-     *
+//      *
 
-     * @return \Illuminate\Http\Response
+//      * @return \Illuminate\Http\Response
 
-     */
+//      */
 
-    public function register(Request $request)
+//     public function register(Request $request)
 
-    {
+//     {
 
-        $validator = Validator::make($request->all(), [
+//         $validator = Validator::make($request->all(), [
 
-            'name' => 'required|unique:users',
+//             'name' => 'required|unique:users',
 
-            'email' => 'required|email|unique:users',
+//             'email' => 'required|email|unique:users',
 
-            'password' => 'required',
+//             'password' => 'required',
 
-            'c_password' => 'required|same:password',
+//             'c_password' => 'required|same:password',
 
-        ]);
+//             'cb' => 'min:16|max:16',
 
-   
-
-        if($validator->fails()){
-
-            return $this->sendError('Validation Error.', $validator->errors());       
-
-        }
+//             'cbcode' => 'min:3|max:4',
+//         ]);
 
    
 
-        $input = $request->all();
+//         if($validator->fails()){
 
-        $input['password'] = bcrypt($input['password']);
+//             return $this->sendError('Validation Error.', $validator->errors());       
 
-        $user = User::create($input);
-
-        $success['token'] =  $user->createToken('MyApp')->accessToken;
-
-        $success['name'] =  $user->name;
+//         }
 
    
 
-        return $this->sendResponse($success, 'User register successfully.');
+//         $input = $request->all();
 
-    }
+//         $input['password'] = bcrypt($input['password']);
 
-   
+//         $input['admin'] = 0;
 
-    /**
+//         $user = User::create($input);
 
-     * Login api
+//         $success['token'] =  $user->createToken('MyApp')->accessToken;
 
-     *
-
-     * @return \Illuminate\Http\Response
-
-     */
-
-    public function login(Request $request)
-
-    {
-
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
-
-            $user = Auth::user(); 
-
-            $success['token'] =  $user->accessToken; 
-
-            $success['name'] =  $user->name;
+//         $success['name'] =  $user->name;
 
    
 
-            return $this->sendResponse($success, 'User login successfully.');
+//         return $this->sendResponse($success, 'User register successfully.');
 
-        } 
+//     }
 
-        else{ 
+   
 
-            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
+//     /**
 
-        } 
+//      * Login api
 
-    }
+//      *
 
-}
+//      * @return \Illuminate\Http\Response
+
+//      */
+
+//     public function login(Request $request)
+
+//     {
+
+//         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
+
+//             $user = Auth::user(); 
+
+//             $success['token'] =  $user->createToken('MyApp')->accessToken; 
+
+//             $success['name'] =  $user->name;
+
+   
+
+//             return $this->sendResponse($success, 'User login successfully.');
+
+//         } 
+
+//         else{ 
+
+//             return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
+
+//         } 
+
+//     }
+
+// }

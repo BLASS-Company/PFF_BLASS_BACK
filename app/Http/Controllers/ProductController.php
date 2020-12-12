@@ -31,7 +31,8 @@ class ProductController extends Controller
 
       return response()->json([
          'status' => (bool) $product,
-         'message'=> $result ? 'The Product has been succesfully created' : 'We have encounter an error in the creation of the Product'
+         'message'=> $result ? 'The Product has been succesfully created' : 'We have encounter an error in the creation of the Product',
+         $product
       ]);
    }
 
@@ -52,6 +53,7 @@ class ProductController extends Controller
       $product->image=$req->input('image');
       $product->price=$req->input('price');
       $product->stock=$req->input('stock');
+      $product->measure_unit = $req->input('measure_unit');
       $result=$product->save();
 
       $category_ids = $req->input('category_ids');
@@ -59,7 +61,42 @@ class ProductController extends Controller
       
       return response()->json([
          'status' => (bool) $product,
-         'message'=> $result ? 'The Product has been succesfully updated' : 'We have encounter an error in the updating of the Product'
+         'message'=> $result ? 'The Product has been succesfully updated' : 'We have encounter an error in the updating of the Product',
+         $product
+      ]);
+   }
+
+   //Update the specified Product in the Database.
+   public function editProduct(Request $req, $id)
+   {
+      $product= Product::find($id);
+      if($req->input('name')){
+      $product->name=$req->input('name');
+      }
+      if($req->input('description')){
+      $product->description=$req->input('description');
+      }
+      if($req->input('image')){
+      $product->image=$req->input('image');
+      }
+      if($req->input('price')){
+      $product->price=$req->input('price');
+      }
+      if($req->input('stock')){
+      $product->stock=$req->input('stock');
+      }
+      if($req->input('measure_unit')){
+      $product->measure_unit = $req->input('measure_unit');
+      }
+      $result=$product->save();
+
+      $category_ids = $req->input('category_ids');
+      $product->categories()->attach($category_ids);
+      
+      return response()->json([
+         'status' => (bool) $product,
+         'message'=> $result ? 'The Product has been succesfully updated' : 'We have encounter an error in the updating of the Product',
+         $product
       ]);
    }
 
