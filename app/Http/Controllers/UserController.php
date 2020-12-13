@@ -34,6 +34,7 @@ class UserController extends BaseController
             'email' => 'required|email|unique:users',
 
             'password' => 'required',
+
         ]);
 
    
@@ -52,15 +53,15 @@ class UserController extends BaseController
 
         $user = User::create($input);
 
-        $success['token'] =  $user->createToken('MyApp')->accessToken;
+        $user['token'] =  $user->createToken('MyApp')->accessToken;
 
-        $success['name'] =  $user->name;
+        $user['name'] =  $user->name;
 
-        $sucess['admin'] = $user->admin;
+        $user['admin'] = $user->admin;
 
    
 
-        return $this->sendResponse($success, 'User register successfully.');
+        return $this->sendResponse($user,'Votre compte a été enregistré avec succès');
 
     }
 
@@ -84,17 +85,9 @@ class UserController extends BaseController
 
             $user = Auth::user(); 
 
-            if ($user->admin == 1) {
-                $request->request->add([
-                    'scope' => 'admin'
-                ]);
-            }
+            $user['token'] =  $user->createToken('MyApp')->accessToken;    
 
-            $success['token'] =  $user->createToken('MyApp')->accessToken; 
-
-   
-
-            return $this->sendResponse($success, 'User login successfully.');
+            return $this->sendResponse($user, 'User login successfully.');
 
         } 
 
